@@ -150,21 +150,29 @@ app.get(['/.env', '/wp-admin', '/wp-login.php', '/config.php', '/Lucy V2.0.0.exe
     `);
 });
 
-// Protected Download Route
-app.get('/api/download-app', authenticateToken, (req, res) => {
+// Protected Download Link Route
+app.get('/api/get-download-link', authenticateToken, async (req, res) => {
     // Only users with a valid JWT (which means they verified a code) can reach here
 
     if (req.user.role !== 'premium') {
         return res.status(403).json({ success: false, message: 'Bunun için yetkiniz yok.' });
     }
 
-    // Path to the actual exe file. This file MUST NOT be in the 'public' folder anymore.
-    const file = path.join(__dirname, 'secure_downloads', 'Lucy V2.0.0.exe');
-
-    if (fs.existsSync(file)) {
-        res.download(file); // Serve the file for download
-    } else {
-        res.status(404).json({ success: false, message: 'Dosya bulunamadı.' });
+    try {
+        // Fetch the latest release from GitHub
+        const response = await axios.get('https://api.github.com/repos/sovmeyingo/Lucy-Updates/releases/latest');
+        
+        // Find the .exe asset
+        const exeAsset = response.data.assets.find(asset => asset.name.endsWith('.exe'));
+        
+        if (exeAsset && exeAsset.browser_download_url) {
+            res.json({ success: true, url: exeAsset.browser_download_url });
+        } else {
+            res.status(404).json({ success: false, message: 'GitHub üzerinde indirilebilir bir .exe bulunamadı.' });
+        }
+    } catch (error) {
+        console.error('GitHub Release Fetch Error:', error.message);
+        res.status(500).json({ success: false, message: 'Bağlantı hatası: Güncel sürüm bilgisi çekilemedi.' });
     }
 });
 

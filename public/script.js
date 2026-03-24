@@ -592,31 +592,29 @@ function initDownloadEffect() {
             this.classList.remove('loading');
             inner.innerHTML = originalHTML;
 
-            // Initiate authenticated download
+            // Initiate authenticated secure download link fetch
             const token = localStorage.getItem('ecemiko_premium_token');
             if (token) {
                 try {
-                    const response = await fetch('/api/download-app', {
+                    const response = await fetch('/api/get-download-link', {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
                     });
 
-                    if (response.ok) {
-                        // Parse the blob to make the browser download it without navigating away
-                        const blob = await response.blob();
-                        const url = window.URL.createObjectURL(blob);
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        // Secretive download trigger using native browser anchor navigation 
+                        // It won't freeze the PC RAM and feels seamless with the website animation!
                         const a = document.createElement('a');
                         a.style.display = 'none';
-                        a.href = url;
-                        // Extract filename from Content-Disposition if available, or just use default
-                        a.download = 'Lucy V2.0.0.exe';
+                        a.href = data.url;
                         document.body.appendChild(a);
                         a.click();
-                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
                     } else {
-                        const errData = await response.json();
-                        alert("İndirme Hatası: " + (errData.message || "Bilinmeyen bir hata oluştu"));
+                        alert("İndirme Hatası: " + (data.message || "Bilinmeyen bir hata oluştu"));
                     }
                 } catch (error) {
                     alert("Bağlantı Hatası!");
