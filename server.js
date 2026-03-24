@@ -120,7 +120,8 @@ app.post('/api/upload-image', upload.single('image'), async (req, res) => {
         const formData = new FormData();
         formData.append('image', req.file.buffer, req.file.originalname);
 
-        const response = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`, formData, {
+        const imgbbKey = process.env.IMGBB_API_KEY || 'c18bc77ca0f6844dc5d500012ad7ea3e';
+        const response = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, formData, {
             headers: formData.getHeaders()
         });
 
