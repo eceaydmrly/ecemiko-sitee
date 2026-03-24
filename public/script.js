@@ -385,9 +385,16 @@ async function fetchLatestRelease() {
         const titleEl = document.getElementById('release-title');
         const dateEl = document.getElementById('release-date');
         const heroBtn = document.getElementById('hero-download-btn');
+        const storageEl = document.getElementById('storage-size-value');
 
         if (titleEl) {
             titleEl.textContent = `Ecemiko Launcher ${data.tag_name}`;
+        }
+
+        const exeAsset = data.assets.find(asset => asset.name.endsWith('.exe'));
+        if (exeAsset && storageEl) {
+            const sizeMB = (exeAsset.size / (1024 * 1024)).toFixed(0);
+            storageEl.textContent = `${sizeMB} MB`;
         }
 
         if (dateEl) {
