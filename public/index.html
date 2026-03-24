@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecemiko — Olabilecek en harika uygulama</title>
+    <meta name="description"
+        content="Ecemiko ile oyun deneyimini bir üst seviyeye taşı. Premium launcher, benzersiz tasarım." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=16" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+</head>
+
+<body>
+    <!-- 
+      ===============================================================
+      🚨 HACKER DETECTED 🚨
+      Sen şimdi kaynak kodları inceleyip buradan bir şeyler 
+      çalabileceğini mi sandın? 
+      aptal olma user ol
+      Daha iyisini denemelisin, tüm arka kapılar kapandı. 😎
+      ===============================================================
+    -->
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <span class="logo-text">ECEMIKO</span>
+                <div class="logo-dot"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#features" class="nav-link">Özellikler</a></li>
+                <li><a href="#pricing" class="nav-link"
+                        style="color: var(--pink); font-weight: 700; text-shadow: 0 0 10px rgba(233, 30, 140, 0.5);">Satın
+                        Al</a></li>
+                <li><a href="#download" class="nav-link auth-dynamic-btn">İndir</a></li>
+            </ul>
+            <div class="nav-cta">
+                <div id="user-profile" class="account-premium-pill auth-required"
+                    style="display: none; cursor: pointer; position: relative;">
+                    <div class="pill-avatar">
+                        <img id="user-photo" src="" alt="Profil">
+                    </div>
+                    <span id="user-name">Kullanıcı</span>
+                    <i class="fas fa-chevron-down pill-chevron"></i>
+
+                    <!-- Premium Dropdown Menu -->
+                    <div id="user-dropdown" class="profile-dropdown">
+                        <div class="dropdown-header">
+                            <span id="dropdown-user-email">email@example.com</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" id="open-settings-name">
+                            <i class="fas fa-user-edit"></i> Adı Değiştir
+                        </a>
+                        <a href="#" class="dropdown-item" id="open-settings-photo">
+                            <i class="fas fa-camera"></i> Fotoğrafı Değiştir
+                        </a>
+                        <a href="#" class="dropdown-item" id="open-settings-password">
+                            <i class="fas fa-key"></i> Şifreyi Değiştir
+                        </a>
+                        <a href="#" class="dropdown-item" id="nav-enter-code">
+                            <i class="fas fa-ticket-alt"></i> Kodu Gir
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-item" id="nav-logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+                <button id="nav-auth-trigger" class="btn-nav">Giriş Yap</button>
+                <a href="#download" class="btn-nav auth-dynamic-btn" id="nav-download-btn"
+                    style="display: none;">İndir</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">MADE OF ECEMİKO</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line" data-text="ECEMİKO">ECEMİKO</span>
+            </h1>
+            <p class="hero-subtitle">Aldığın 1 oyundan fazlasını veren<br />benzersiz launcher uygulaması
+            </p>
+            <div class="hero-cta-group">
+                <a href="#pricing" class="btn-primary" id="hero-download-btn">
+                    <span class="btn-text">Satın Al</span>
+                    <span class="btn-arrow">→</span>
+                    <div class="btn-glow"></div>
+                </a>
+                <a href="#features" class="btn-ghost">Keşfet</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-num" data-count="5">1</span>
+                    <span class="stat-plus">+</span>
+                    <span class="stat-label">Kullanıcı</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num" data-count="64">0</span>
+                    <span class="stat-plus">Bin+</span>
+                    <span class="stat-label">Oyun</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num" data-count="100">0</span>
+                    <span class="stat-plus">%</span>
+                    <span class="stat-label">Memnuniyet</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <div class="scroll-hint-line"></div>
+            <span>Kaydır</span>
+        </div>
+    </section>
+
+    <!-- ===================== SCROLL ANIMATION SECTION ===================== -->
+    <section id="scroll-animation-section">
+
+        <!-- Full-screen sticky canvas layer -->
+        <div id="canvas-sticky">
+
+            <!-- The frame canvas -->
+            <canvas id="scroll-canvas"></canvas>
+
+            <!-- Dark gradient blends that connect to sections above/below -->
+            <div class="canvas-fade canvas-fade--top"></div>
+            <div class="canvas-fade canvas-fade--bottom"></div>
+
+            <!-- Subtle vignette -->
+            <div class="canvas-vignette"></div>
+
+            <!-- Progress rail — right edge -->
+            <div class="scroll-progress-rail">
+                <div class="scroll-progress-line" id="scroll-progress-line"></div>
+                <div class="scroll-progress-dot" id="scroll-progress-dot"></div>
+            </div>
+
+            <!-- Frame counter — bottom left -->
+            <div class="frame-counter">
+                <span id="frame-counter-num">001</span>
+                <span class="frame-counter-slash">/</span>
+                <span class="frame-counter-total">093</span>
+            </div>
+
+            <!-- ── CHAPTER 1  (frames 1–37 → scroll 0–0.40) ── -->
+            <div class="story-panel story-panel--left" id="story-1" data-from="0" data-to="0.40">
+                <div class="story-panel-inner">
+                    <div class="story-chapter">CH. 01</div>
+                    <h2 class="story-heading">
+                        Oyunun Tadını<br /><em>Çıkar</em>
+                    </h2>
+                    <p class="story-body">Her bir AppID, Her bir oyun. Ecemiko ile oyunun içine gir.</p>
+                    <div class="story-line"></div>
+                </div>
+            </div>
+
+            <!-- ── CHAPTER 2  (frames 40–65 → scroll 0.43–0.70) ── -->
+            <div class="story-panel story-panel--right" id="story-2" data-from="0.43" data-to="0.70">
+                <div class="story-panel-inner">
+                    <div class="story-chapter">CH. 02</div>
+                    <h2 class="story-heading">
+                        Steamın verdiği limitleri<br /><em>Aş</em>
+                    </h2>
+                    <p class="story-body">Ultra hız, kesintisiz deneyim. Rakipler geride kalır.</p>
+                    <div class="story-line"></div>
+                </div>
+            </div>
+
+            <!-- ── CHAPTER 3  (frames 68–93 → scroll 0.73–1.0) ── -->
+            <div class="story-panel story-panel--center" id="story-3" data-from="0.73" data-to="1">
+                <div class="story-panel-inner">
+                    <div class="story-chapter">CH. 03</div>
+                    <h2 class="story-heading">
+                        Hazır<br /><em>mısın?</em>
+                    </h2>
+                    <p class="story-body">Ecemiko seni bekliyor. Oyun şimdi başlıyor.</p>
+                    <a href="#download" class="story-btn">İndir →</a>
+                    <div class="story-line"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== SSS (FAQ) SECTİON ===================== -->
+    <section id="faq-section" class="reveal">
+        <div class="faq-container">
+            <div class="faq-header">
+                <div class="section-badge">MERAK EDİLENLER</div>
+                <h2 class="section-title">Aklında Sorular mı Var?</h2>
+                <p class="section-desc">Ecemiko ile ilgili tüm detaylar burada.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Ecemiko'yu indirmek ücretli mi?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Evet! 🌸 Olabilecek en tatlı ve uygun fiyatla, herkes rahatça ulaşsın istedik!
+                            Uygulamamızı
+                            sitemizden indirip sana verdiğimiz o minik kodla hemen sihirli dünyaya adım atabilirsin! ✨💖
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Sistem gereksinimleri nelerdir?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Windows 10 ve üzeri bir sistemin varsa hiç dert etme, tıkır tıkır çalışıyor! 🎀 Ecemiko,
+                            bilgisayarını asla yormayacak kadar minnoş ve hafif bir yapıyla tasarlandı. Sen sadece
+                            keyfini çıkar!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Güncellemeler otomatik mi yapılıyor?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Kesinlikle evet! Yeni bir sürüm geldiğinde değerli vaktini çalmamak için seni sıkmıyoruz.
+                            Kendi
+                            geliştirdiğimiz
+                            akıllı sistem sayesinde gelen sihirli ''Güncellemeyi İndir'' butonu ile, arka planda
+                            saniyeler içinde kendini güncelliyor!
+                            🪄✨</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Güvenlik konusunda ne kadar iddialısınız?</span>
+                        <div class="faq-icon">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Bu konuda inanılmaz titiziz! 🔐 Tüm bağlantıların sıkı sıkıya şifreleniyor ve verilerini
+                            kimseciklerle
+                            paylaşmıyoruz! Sistemi adeta bir banka kasası gibi kilit altında tutuyoruz. Çünkü senin o
+                            güzel
+                            güvenliğin her şeyden önemli!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section id="features">
+        <div class="section-header">
+            <div class="section-badge">ÖZELLİKLER</div>
+            <h2 class="section-title">Neden <span class="highlight">Ecemiko</span>?</h2>
+            <p class="section-desc">Rakiplerinden sıyrılan, seni farklı kılan özellikler</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-index="0">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" />
+                        <path d="M16 24l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3>Ultra Hız</h3>
+                <p>Sıfır gecikme, anlık yanıt. Performansın zirvesini yaşa.</p>
+                <div class="feature-card-line"></div>
+            </div>
+            <div class="feature-card feature-card--highlight feature-card--clickable" data-index="1"
+                id="premium-design-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 4l6 14h14l-11 8.5 4 14L24 32l-13 8.5 4-14L4 18h14z" stroke="currentColor"
+                            stroke-width="2" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3>Premium Tasarım</h3>
+                <p>Her piksel özenle tasarlandı. Görsel şölen seni bekliyor.</p>
+                <div class="feature-card-line"></div>
+                <!-- Mini Badge to indicate clickability -->
+                <div class="click-badge">Görsellere Bak</div>
+            </div>
+            <div class="feature-card" data-index="2">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <rect x="8" y="12" width="32" height="24" rx="4" stroke="currentColor" stroke-width="2" />
+                        <path d="M19 24h10M24 19v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <h3>Sürekli Güncelleme</h3>
+                <p>Her gün yeni içerik, her gün daha güçlü bir deneyim.</p>
+                <div class="feature-card-line"></div>
+            </div>
+            <div class="feature-card" data-index="3">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 8c-8.8 0-16 7.2-16 16s7.2 16 16 16 16-7.2 16-16S32.8 8 24 8z" stroke="currentColor"
+                            stroke-width="2" />
+                        <path d="M20 16c0 0 8 4 8 8s-8 8-8 8" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h3>64K+ Fazla Oyun</h3>
+                <p>Geniş kütüphane, sınırsız eğlence. Arayan bulur.</p>
+                <div class="feature-card-line"></div>
+            </div>
+            <div class="feature-card" data-index="4">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M12 36L24 12l12 24H12z" stroke="currentColor" stroke-width="2"
+                            stroke-linejoin="round" />
+                        <circle cx="24" cy="28" r="2" fill="currentColor" />
+                    </svg>
+                </div>
+                <h3>Güvenli & Stabil</h3>
+                <p>Kesintisiz koruma, sıfır crash. Güvende oyna.</p>
+                <div class="feature-card-line"></div>
+            </div>
+            <div class="feature-card" data-index="5">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="2" />
+                        <path
+                            d="M24 8v4M24 36v4M8 24h4M36 24h4M12.7 12.7l2.8 2.8M32.5 32.5l2.8 2.8M12.7 35.3l2.8-2.8M32.5 15.5l2.8-2.8"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <h3>Özelleştirilebilir</h3>
+                <p>Kendi tarzını yansıt. Her şey senin kontrolünde.</p>
+                <div class="feature-card-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SHOWCASE STRIP ===================== -->
+    <section id="showcase-strip">
+        <div class="strip-track">
+            <!-- Orijinal Grup -->
+            <div class="strip-item">KALİTELİ</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">TAM GÜVENLİKLİ</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">UYGUN FİYAT</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">MAKSİMUM KALİTE</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">MAKSİMUM PERFORMANS</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">DEVAMLI GÜNCEL</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">KULLANICI DOSTU</div>
+            <div class="strip-dot">◆</div>
+            <!-- Sonsuz Döngü İçin Kopyalanmış Grup -->
+            <div class="strip-item">KALİTELİ</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">TAM GÜVENLİKLİ</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">UYGUN FİYAT</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">MAKSİMUM KALİTE</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">MAKSİMUM PERFORMANS</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">DEVAMLI GÜNCEL</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">ECEMİKO</div>
+            <div class="strip-dot">◆</div>
+            <div class="strip-item">KULLANICI DOSTU</div>
+            <div class="strip-dot">◆</div>
+        </div>
+    </section>
+
+    <!-- ===================== PRICING ===================== -->
+    <section id="pricing" class="reveal">
+        <div class="pricing-bg-blobs">
+            <!-- Reuse blob styling from download for thematic consistency -->
+            <div class="blob blob-1"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="section-header">
+            <div class="section-badge"
+                style="background: rgba(233, 30, 140, 0.1); color: var(--pink); border-color: rgba(233, 30, 140, 0.3);">
+                SATIN AL</div>
+            <h2 class="section-title">En Uygun Paketi <span class="highlight">Seç</span></h2>
+            <p class="section-desc">Hem bütçe dostu hem de sınırsız güç. Kusursuz deneyim için sana uygun olanı hemen
+                al.</p>
+        </div>
+
+        <div class="pricing-container">
+            <!-- Paket 1: Aylık -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <div class="package-title-row">
+                        <i class="far fa-calendar-alt package-icon"></i>
+                        <h3 class="package-name">1 Aylık Paket</h3>
+                    </div>
+                    <div class="package-badge-inline" style="background: linear-gradient(90deg, #4f46e5, #7c3aed);">
+                        Başlangıç</div>
+                </div>
+                <p class="package-subtitle">Kısa süreli kullanım için uygun</p>
+
+                <div class="package-price-box">
+                    <div class="package-price-value">350<span class="price-currency">.00 ₺</span></div>
+                    <div class="package-price-sub">KDV dahildir</div>
+                </div>
+
+                <div class="pricing-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Anında Teslimat</li>
+                        <li><i class="fas fa-check"></i> 1 Aylık Kesintisiz VIP Erişim</li>
+                        <li><i class="fas fa-check"></i> 7/24 Kesintisiz Çok Özel Destek</li>
+                        <li><i class="fas fa-check"></i> Yeni Sürümlere Ücretsiz Erişim</li>
+                    </ul>
+                </div>
+                <a href="https://www.shopier.com/Ecemikko/45092463" target="_blank" class="btn-pricing"><i
+                        class="far fa-credit-card" style="margin-right: 8px;"></i> Satın Al</a>
+            </div>
+
+            <!-- Paket 2: Sınırsız -->
+            <div class="pricing-card pricing-card-premium">
+                <div class="pricing-header">
+                    <div class="package-title-row">
+                        <i class="fas fa-infinity package-icon" style="color: #ffd700;"></i>
+                        <h3 class="package-name"
+                            style="background: linear-gradient(135deg, #ffd700, #fff); -webkit-background-clip: text; background-clip: text; color: transparent;">
+                            Sınırsız Paket</h3>
+                    </div>
+                    <div class="package-badge-inline">En Avantajlı</div>
+                </div>
+                <p class="package-subtitle">Ömür boyu kusursuz abonelik tasarrufu</p>
+
+                <div class="package-price-box">
+                    <div class="package-price-value" style="color: #ffd700;">1200<span class="price-currency">.00
+                            ₺</span></div>
+                    <div class="package-price-sub" style="color: rgba(255,215,0,0.6);">KDV dahildir</div>
+                </div>
+
+                <div class="pricing-features">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Ömür Boyu Limitsiz Teslimat</li>
+                        <li><i class="fas fa-check"></i> Sınırsız Süre Oynayış</li>
+                        <li><i class="fas fa-check"></i> Özel VIP Rol & Acil Destek</li>
+                        <li><i class="fas fa-check"></i> Yeni Özelliklere Erken Sınırsız Erişim</li>
+                    </ul>
+                </div>
+                <a href="https://www.shopier.com/Ecemikko/45092509" target="_blank"
+                    class="btn-pricing btn-pricing-premium"><i class="far fa-credit-card"
+                        style="margin-right: 8px;"></i> Satın Al</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== DOWNLOAD ===================== -->
+    <section id="download" class="auth-required">
+        <div class="download-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="download-content">
+            <div class="section-badge">İNDİR</div>
+            <h2 class="download-title">Deneyime <span class="highlight">Başla</span></h2>
+            <p class="download-desc">Ecemiko'yu indir, kurulumu tamamla ve oyun dünyasına adım at.</p>
+
+            <div class="download-card">
+                <div class="download-card-left">
+                    <div class="download-icon-wrap">
+                        <svg class="dl-icon" viewBox="0 0 80 80" fill="none">
+                            <circle cx="40" cy="40" r="38" stroke="url(#dlGrad)" stroke-width="2" />
+                            <path d="M40 22v24M30 36l10 12 10-12" stroke="url(#dlGrad2)" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M26 54h28" stroke="url(#dlGrad2)" stroke-width="3" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="dlGrad" x1="2" y1="2" x2="78" y2="78"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E91E8C" />
+                                    <stop offset="1" stop-color="#9B59B6" />
+                                </linearGradient>
+                                <linearGradient id="dlGrad2" x1="26" y1="22" x2="54" y2="54"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E91E8C" />
+                                    <stop offset="1" stop-color="#9B59B6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="download-icon-pulse"></div>
+                    </div>
+                    <div class="download-info">
+                        <h3 class="download-app-name" id="release-title">Ecemiko Launcher</h3>
+                        <div class="download-meta-row">
+                            <span class="download-meta-item">
+                                <svg viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 1a7 7 0 100 14A7 7 0 008 1z" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <span id="release-date">Son Güncelleme: Bekleniyor...</span>
+                            </span>
+                            <span class="download-meta-item">
+                                <svg viewBox="0 0 16 16" fill="none">
+                                    <rect x="2" y="3" width="12" height="10" rx="2" stroke="currentColor"
+                                        stroke-width="1.5" />
+                                    <path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                </svg>
+                                Windows 10/11
+                            </span>
+                        </div>
+                        <div class="download-tags">
+                            <span class="tag">Uygun fiyatlı</span>
+                            <span class="tag">Kullanıcı Dostu</span>
+                            <span class="tag">Hızlı</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-card-right">
+                    <a href="#" class="btn-download" id="main-download-btn">
+                        <div class="btn-download-inner">
+                            <div class="btn-download-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 3v13M6 11l6 7 6-7" stroke="currentColor" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M3 20h18" stroke="currentColor" stroke-width="2.5"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="btn-download-text">
+                                <span class="btn-dl-main">İndir</span>
+                                <span class="btn-dl-sub">Windows için</span>
+                            </div>
+                        </div>
+                        <div class="btn-download-shine"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="download-requirements">
+                <h4>Sistem Gereksinimleri</h4>
+                <div class="req-grid">
+                    <div class="req-item">
+                        <span class="req-label">İşletim Sistemi</span>
+                        <span class="req-value">Windows 10 / 11 (64-bit)</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">RAM</span>
+                        <span class="req-value">4 GB+</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">Depolama</span>
+                        <span class="req-value">500 MB</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">Bağlantı</span>
+                        <span class="req-value">Internet gerektirir</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer id="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <span class="logo-text">ECEMIKO</span>
+                <p>Ecemiko ile oyunun tadını çıkar.</p>
+            </div>
+            <div class="footer-copy">
+                <span>© 2026 Ecemiko. Tüm hakları saklıdır.</span>
+            </div>
+            <div class="footer-links">
+                <a href="#" id="privacy-link">Gizlilik</a>
+                <a href="#" id="terms-link">Koşullar</a>
+                <a href="#" id="contact-link">İletişim</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP for Butter-Smooth Scroll Triggering via Canvas -->
+    <!-- ===================== LOGIN/REGISTER MODAL ===================== -->
+    <!-- Profile Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content auth-content">
+            <button class="modal-close">&times;</button>
+            <div class="auth-header">
+                <h2 id="settings-title">Profili Düzenle</h2>
+                <p id="settings-subtitle">Bilgilerini buradan güncelleyebilirsin.</p>
+            </div>
+
+            <div class="auth-input-group" id="settings-form">
+                <!-- Name Change View -->
+                <div id="view-change-name" class="settings-view">
+                    <input type="text" id="new-display-name" placeholder="Yeni Kullanıcı Adı">
+                    <button id="save-name-btn" class="btn-primary">Adı Güncelle</button>
+                </div>
+
+                <!-- Photo Change View -->
+                <div id="view-change-photo" class="settings-view" style="display: none;">
+                    <div id="photo-upload-step">
+                        <div class="file-upload-wrapper">
+                            <label for="new-photo-file" class="file-upload-label" id="drop-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span id="file-label-text">Bilgisayardan Fotoğraf Seç</span>
+                            </label>
+                            <input type="file" id="new-photo-file" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="auth-divider"><span>VEYA</span></div>
+                        <input type="url" id="new-photo-url" placeholder="Fotoğraf URL'si Yapıştır">
+                        <button id="save-photo-btn" class="btn-primary">Fotoğrafı Güncelle</button>
+                    </div>
+
+                    <!-- Cropping Step (Hidden Initially) -->
+                    <div id="photo-crop-step" style="display: none;">
+                        <div class="cropper-wrapper">
+                            <img id="cropper-image" src="" alt="Düzeltme Yap">
+                        </div>
+                        <div class="cropper-controls">
+                            <button id="cancel-crop-btn" class="btn-ghost">Vazgeç</button>
+                            <button id="confirm-crop-btn" class="btn-primary">Kırp ve Kaydet</button>
+                        </div>
+                    </div>
+
+                    <div id="upload-progress" class="upload-progress-bar" style="display: none;">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Password Change View -->
+                <div id="view-change-password" class="settings-view" style="display: none;">
+                    <input type="password" id="new-password" placeholder="Yeni Şifre">
+                    <button id="save-password-btn" class="btn-primary">Şifreyi Güncelle</button>
+                </div>
+            </div>
+
+            <div id="settings-error" class="auth-error-msg"></div>
+            <div id="settings-success" class="auth-success-msg"
+                style="color: #4CAF50; font-size: 0.8rem; margin-top: 10px; text-align: center; display: none;">
+                Değişiklikler kaydedildi!</div>
+        </div>
+    </div>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content auth-content">
+            <div class="auth-header">
+                <h2>Hoş Geldiniz</h2>
+                <p>Ecemiko dünyasına katılmak için giriş yapın.</p>
+            </div>
+
+            <div class="auth-methods">
+                <button id="google-login-btn" class="btn-google">
+                    <svg viewBox="0 0 48 48">
+                        <path fill="#EA4335"
+                            d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z">
+                        </path>
+                        <path fill="#4285F4"
+                            d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z">
+                        </path>
+                        <path fill="#FBBC05"
+                            d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z">
+                        </path>
+                        <path fill="#34A853"
+                            d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z">
+                        </path>
+                        <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                    Google ile Giriş Yap
+                </button>
+
+                <div class="auth-divider"><span>Veya</span></div>
+
+                <div class="auth-toggle-group">
+                    <button id="tab-login" class="auth-tab active">Giriş Yap</button>
+                    <button id="tab-register" class="auth-tab">Kayıt Ol</button>
+                </div>
+
+                <div class="auth-input-group" id="login-form-group">
+                    <input type="email" id="login-email" placeholder="E-posta Adresi">
+                    <input type="password" id="login-password" placeholder="Şifre">
+                    <button id="email-login-btn" class="btn-primary" style="justify-content: center;">Giriş Yap</button>
+                </div>
+
+                <div class="auth-input-group" id="register-form-group" style="display: none;">
+                    <input type="text" id="register-username" placeholder="Kullanıcı Adı">
+                    <input type="email" id="register-email" placeholder="E-posta Adresi">
+                    <input type="password" id="register-password" placeholder="Şifre">
+                    <button id="email-register-btn" class="btn-primary" style="justify-content: center;">Kayıt
+                        Ol</button>
+                </div>
+            </div>
+            <p id="login-error" class="auth-error-msg"></p>
+            <button id="login-skip-btn" class="auth-skip">Sadece siteye göz at</button>
+
+        </div>
+    </div>
+
+    <!-- ===================== CODE AUTH MODAL (2nd Step) ===================== -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content auth-content">
+            <div class="auth-header">
+                <div class="auth-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <h2>Son Bir Adım!</h2>
+                <p>Hesabınız doğrulandı. Şimdi erişim kodunuzu girin.</p>
+            </div>
+            <div class="auth-input-group">
+                <input type="text" id="auth-code-input" placeholder="ECW-XXXX" maxlength="8">
+                <button id="auth-submit-btn" class="btn-primary">Kodu Onayla</button>
+            </div>
+            <p id="auth-error" class="auth-error-msg">Geçersiz kod! Lütfen tekrar deneyiniz.</p>
+        </div>
+    </div>
+
+    <!-- ===================== CONTACT MODAL ===================== -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content contact-content">
+            <button class="modal-close" id="contact-close">&times;</button>
+            <div class="contact-header">
+                <h2>İletişime Geç</h2>
+                <p>Soruların veya önerilerin için bize yazabilirsin.</p>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <input type="text" placeholder="İsmin / Kullanıcı Adın" required>
+                <input type="email" placeholder="E-posta Adresin" required>
+                <textarea placeholder="Mesajın..." rows="4" required></textarea>
+                <button type="submit" class="btn-primary">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================== LIGHTBOX MODAL ===================== -->
+    <div id="lightbox-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+
+            <div class="modal-body">
+                <button class="nav-btn prev-btn" id="prev-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <div class="image-container">
+                    <img id="modal-img" src="" alt="Ecemiko Premium Design">
+                    <div class="image-caption" id="image-caption">Görsel 1/8</div>
+                </div>
+
+                <button class="nav-btn next-btn" id="next-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-thumbnails" id="modal-thumbnails">
+                <!-- Thumbs injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Firebase App/Database/Auth SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="script.js?v=17"></script>
+</body>
+
+</html>
